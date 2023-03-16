@@ -11,8 +11,8 @@ rm $HOME_DIR/$INSTALL_DIR -f -R cat -d
 mkdir -p $HOME_DIR/$INSTALL_DIR
 
 # Update sources and existing packages
-#apt-get update
-#apt-get upgrade -y
+apt-get update
+apt-get upgrade -y
 
 # Install curl for retrieving additional files and unzip for decompression
 apt-get install -y curl
@@ -48,3 +48,5 @@ then
     reboot
 fi
 
+# Initialise the kiosk mode page
+export DISPLAY_URL=https://google.com/
