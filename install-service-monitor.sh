@@ -2,7 +2,7 @@
 
 INSTALL_DIR=service-monitor
 HOME_DIR=/home/htc
-HOST_NAME=tv-display-1
+HOST_NAME="tv-display-1"
 
 # Create new app folder in home directory
 mkdir -p $HOME_DIR/$INSTALL_DIR
