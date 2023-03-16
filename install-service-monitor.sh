@@ -5,7 +5,7 @@ HOME_DIR=/home/htc
 HOST_NAME="tv-display-1"
 
 # Delete the previous app folder in home directory
-rm $HOME_DIR/$INSTALL_DIR -f -R -v -d
+rm $HOME_DIR/$INSTALL_DIR -f -R cat -d
 
 # Create new app folder in home directory
 mkdir -p $HOME_DIR/$INSTALL_DIR
