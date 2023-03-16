@@ -33,7 +33,7 @@ apt-get install -y chromium-browser
 # Ensure the display runs on startup with this command:
 # nohup node /home/htc/service-monitor/serviceChecker.js &>/dev/null &
 #
-#echo 'nohup node $HOME_DIR/$INSTALL_DIR/serviceChecker.js &>/dev/null &' >>$HOME_DIR/.bashrc
+echo "nohup node $HOME_DIR/$INSTALL_DIR/serviceChecker.js &>/dev/null & >>$HOME_DIR/.bashrc
 
 # Update the device's host name so it is unique
 # and restart so it takes effect
