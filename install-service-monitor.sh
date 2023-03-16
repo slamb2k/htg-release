@@ -47,3 +47,4 @@ then
     hostnamectl set-hostname $HOST_NAME
     reboot
 fi
+
