@@ -4,6 +4,9 @@ INSTALL_DIR=service-monitor
 HOME_DIR=/home/htc
 HOST_NAME="tv-display-1"
 
+# Delete the previous app folder in home directory
+rm $HOME_DIR/$INSTALL_DIR -r -f
+
 # Create new app folder in home directory
 mkdir -p $HOME_DIR/$INSTALL_DIR
 
@@ -30,14 +33,16 @@ npm install --prefix $HOME_DIR/$INSTALL_DIR/
 apt-get install -y xdotool
 apt-get install -y chromium-browser
 
+# Clean out any previous startup commands
+sudo sed '/^nohup node/d' ~/.bashrc > ~/.bashrc
+
 # Ensure the display runs on startup with this command:
-# nohup node /home/htc/service-monitor/serviceChecker.js &>/dev/null &
-#
-echo "nohup node $HOME_DIR/$INSTALL_DIR/serviceChecker.js &>/dev/null & >>$HOME_DIR/.bashrc
+echo "nohup node $HOME_DIR/$INSTALL_DIR/serviceChecker.js &>/dev/null &" >>$HOME_DIR/.bashrc
 
 # Update the device's host name so it is unique
 # and restart so it takes effect
-if [$HOSTNAME != $HOST_NAME]; then
+if [ $HOSTNAME != $HOST_NAME ]
+then
     echo "Renaming host to $HOST_NAME"
     hostnamectl set-hostname $HOST_NAME
     reboot
