@@ -11,14 +11,13 @@ mkdir -p $HOME_DIR/$INSTALL_DIR
 #apt-get update
 #apt-get upgrade -y
 
-# Install curl for retrieving additional files
+# Install curl for retrieving additional files and unzip for decompression
 apt-get install -y curl
+apt-get install -y unzip
 
 # Get the necessary files from the github repo
-curl -i -L https://raw.githubusercontent.com/HTCDevelopment/htg-master/main/service-monitor/package.json?token=GHSAT0AAAAAACACGZ6PM7IHIFCYU4BMFP5IZASC3CQ -o $HOME_DIR/$INSTALL_DIR/package.json
-curl -i -L https://raw.githubusercontent.com/HTCDevelopment/htg-master/main/service-monitor/serviceChecker.js?token=GHSAT0AAAAAACACGZ6OW5MROUTKGIY3EH5IZASC66Q -o $HOME_DIR/$INSTALL_DIR/serviceChecker.js
-curl -i -L https://raw.githubusercontent.com/HTCDevelopment/htg-master/main/service-monitor/run-chromium.sh?token=GHSAT0AAAAAACACGZ6OEAVACXSCES626T5MZASC6AQ -o $HOME_DIR/$INSTALL_DIR/run-chromium.sh
-chmod 755 $HOME_DIR/$INSTALL_DIR/run-chromium.sh
+curl -i -L https://github.com/slamb2k/htg-release/raw/main/service-monitor-deploy.zip -o $HOME_DIR/$INSTALL_DIR/service-monitor-deploy.zip
+unzip $HOME_DIR/$INSTALL_DIR/service-monitor-deploy.zip -d $HOME_DIR/$INSTALL_DIR/
 
 # Install nodejs 19.x with npm
 curl -fsSL https://deb.nodesource.com/setup_19.x | bash - &&\
