@@ -34,7 +34,7 @@ apt-get install -y xdotool
 apt-get install -y chromium-browser
 
 # Clean out any previous startup commands
-sudo sed '/^nohup node/d' ~/.bashrc > ~/.bashrc
+#sudo sed '/^nohup node/d' ~/.bashrc > ~/.bashrc
 
 # Ensure the display runs on startup with this command:
 echo "nohup node $HOME_DIR/$INSTALL_DIR/serviceChecker.js &>/dev/null &" >>$HOME_DIR/.bashrc
