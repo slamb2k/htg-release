@@ -1,14 +1,19 @@
+#!/bin/bash
+
 # Run the following command to install the service monitor. It will be installed in the home directory of the user 'htc' and will be run on startup. Attributes of the install can be overridden by setting environment variables before running the command.
 #
 # curl -s https://ggle.io/htc-display | sudo -E bash -
 #
 
-#!/bin/bash
+HOST_NAME=${HOST_NAME:=tv-display-1}
+HOME_DIR=${HOME_DIR:=/home/htc}
+INSTALL_DIR=${INSTALL_DIR:=service-monitor}
+DISPLAY_URL=${DISPLAY_URL:=http://192.168.0.230:3000/}
 
-EXPORT ${HOST_NAME:=tv-display-1}
-EXPORT ${HOME_DIR:=/home/htc}
-EXPORT ${INSTALL_DIR:=service-monitor}
-EXPORT ${DISPLAY_URL:=http://192.168.0.230:3000/}
+EXPORT HOST_NAME
+EXPORT HOME_DIR
+EXPORT INSTALL_DIR
+EXPORT DISPLAY_URL
 
 # Delete the previous app folder in home directory
 rm $HOME_DIR/$INSTALL_DIR -f -R cat -d
