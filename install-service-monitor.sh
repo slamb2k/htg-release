@@ -22,6 +22,7 @@ rm $HOME_DIR/$INSTALL_DIR -f -R cat -d
 mkdir -p $HOME_DIR/$INSTALL_DIR
 
 # Update sources and existing packages
+EXPORT DEBIAN_FRONTEND=noninteractive
 apt-get update
 apt-get upgrade -y
 
