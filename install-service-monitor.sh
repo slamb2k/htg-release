@@ -5,15 +5,10 @@
 # curl -s https://ggle.io/htc-display | sudo -E bash -
 #
 
-HOST_NAME=${HOST_NAME:=tv-display-1}
-HOME_DIR=${HOME_DIR:=/home/htc}
-INSTALL_DIR=${INSTALL_DIR:=service-monitor}
-DISPLAY_URL=${DISPLAY_URL:=http://192.168.0.230:3000/}
-
-#EXPORT HOST_NAME
-#EXPORT HOME_DIR
-#EXPORT INSTALL_DIR
-#EXPORT DISPLAY_URL
+export HOST_NAME=${HOST_NAME:=tv-display-1}
+export HOME_DIR=${HOME_DIR:=/home/htc}
+export INSTALL_DIR=${INSTALL_DIR:=service-monitor}
+export DISPLAY_URL=${DISPLAY_URL:=http://192.168.0.230:3000/}
 
 # Delete the previous app folder in home directory
 rm $HOME_DIR/$INSTALL_DIR -f -R cat -d
@@ -22,7 +17,7 @@ rm $HOME_DIR/$INSTALL_DIR -f -R cat -d
 mkdir -p $HOME_DIR/$INSTALL_DIR
 
 # Update sources and existing packages
-EXPORT DEBIAN_FRONTEND=noninteractive
+export DEBIAN_FRONTEND=noninteractive
 apt-get update
 apt-get upgrade -y
 
