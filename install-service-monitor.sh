@@ -49,6 +49,8 @@ cat > $HOME_DIR/.config/autostart/browser.desktop<< EOF
 Exec=env DISPLAY_URL=$DISPLAY_URL $HOME_DIR/$INSTALL_DIR/run-chromium.sh
 EOF
 
+echo 'autologin-user=htc' | sudo tee -a /etc/lightdm/lightdm.conf.d/11-armbian.conf
+
 # Update the device's host name so it is unique
 # and restart so it takes effect
 if [ $HOSTNAME != $HOST_NAME ]
