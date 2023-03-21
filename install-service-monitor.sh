@@ -1,8 +1,9 @@
 #!/bin/bash
 
-INSTALL_DIR=service-monitor
-HOME_DIR=/home/htc
-HOST_NAME="tv-display-1"
+EXPORT HOST_NAME="tv-display-1"
+EXPORT HOME_DIR=/home/htc
+EXPORT INSTALL_DIR=service-monitor
+EXPORT DISPLAY_URL=http://192.168.0.230:3000/
 
 # Delete the previous app folder in home directory
 rm $HOME_DIR/$INSTALL_DIR -f -R cat -d
@@ -22,6 +23,9 @@ apt-get install -y unzip
 curl -i -L https://github.com/slamb2k/htg-release/raw/main/service-monitor-deploy.zip -o $HOME_DIR/$INSTALL_DIR/service-monitor-deploy.zip
 unzip $HOME_DIR/$INSTALL_DIR/service-monitor-deploy.zip -d $HOME_DIR/$INSTALL_DIR/
 
+# Set shell scripts to be executable
+chmod +x $HOME_DIR/$INSTALL_DIR/*.sh
+
 # Install nodejs 19.x with npm
 curl -fsSL https://deb.nodesource.com/setup_19.x | bash - &&\
 apt-get install -y nodejs
@@ -33,11 +37,11 @@ npm install --prefix $HOME_DIR/$INSTALL_DIR/
 apt-get install -y xdotool
 apt-get install -y chromium-browser
 
-# Clean out any previous startup commands
-#sudo sed '/^nohup node/d' ~/.bashrc > ~/.bashrc
-
-# Ensure the display runs on startup with this command:
-echo "nohup node $HOME_DIR/$INSTALL_DIR/serviceChecker.js &>/dev/null &" >>$HOME_DIR/.bashrc
+# Ensure the display runs on startup by loading the browser
+cat > $HOME_DIR/.config/autostart/browser.desktop<< EOF
+[Desktop Entry]
+Exec=env DISPLAY_URL=$DISPLAY_URL $HOME_DIR/$INSTALL_DIR/run-chromium.sh
+EOF
 
 # Update the device's host name so it is unique
 # and restart so it takes effect
@@ -45,8 +49,7 @@ if [ $HOSTNAME != $HOST_NAME ]
 then
     echo "Renaming host to $HOST_NAME"
     hostnamectl set-hostname $HOST_NAME
-    reboot
 fi
 
-# Initialise the kiosk mode page
-export DISPLAY_URL=https://google.com/
+reboot now
+
