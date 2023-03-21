@@ -1,9 +1,9 @@
 #!/bin/bash
 
-EXPORT HOST_NAME="tv-display-1"
-EXPORT HOME_DIR=/home/htc
-EXPORT INSTALL_DIR=service-monitor
-EXPORT DISPLAY_URL=http://192.168.0.230:3000/
+EXPORT ${HOST_NAME:=tv-display-1}
+EXPORT ${HOME_DIR:=/home/htc}
+EXPORT ${INSTALL_DIR:=service-monitor}
+EXPORT ${DISPLAY_URL:=http://192.168.0.230:3000/}
 
 # Delete the previous app folder in home directory
 rm $HOME_DIR/$INSTALL_DIR -f -R cat -d
