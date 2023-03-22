@@ -9,6 +9,7 @@ export HOST_NAME=${HOST_NAME:=tv-display-1}
 export HOME_DIR=${HOME_DIR:=/home/htc}
 export INSTALL_DIR=${INSTALL_DIR:=service-monitor}
 export DISPLAY_URL=${DISPLAY_URL:=http://192.168.0.230:3000/}
+export DEBIAN_FRONTEND=noninteractive
 
 # Delete the previous app folder in home directory
 rm $HOME_DIR/$INSTALL_DIR -f -R cat -d
@@ -17,9 +18,11 @@ rm $HOME_DIR/$INSTALL_DIR -f -R cat -d
 mkdir -p $HOME_DIR/$INSTALL_DIR
 
 # Update sources and existing packages
-export DEBIAN_FRONTEND=noninteractive
 apt-get update
-apt-get upgrade -y
+
+# Attempting to force non-interactive
+sudo apt-get -o Dpkg::Options::="--force-confnew" --force-yes -fuy dist-upgrade
+#apt-get upgrade -y
 
 # Install curl for retrieving additional files and unzip for decompression
 apt-get install -y curl
