@@ -1,4 +1,4 @@
 # Service Monitor Release
 
-# Can probably shorten the url but anyway
+# Download the install script and required dependencies
 curl -sL [tinyurl.com/htg-mon](tinyurl.com/htg-mon) | sudo -E bash -
