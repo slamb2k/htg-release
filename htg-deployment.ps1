@@ -78,5 +78,9 @@ Write-Host "To update then start services, run => docker-update.cmd in c:\htg-di
 Write-Host "To stop services, run => docker-stop.cmd in c:\htg-display\ folder." -ForegroundColor Green
 Write-Host "`n"
 
+# update containers
+Write-Host "Updating containers..." -ForegroundColor Yellow
+C:\htg-display\docker-update.cmd
+
 Read-Host "Press [enter] to continue.."
 
